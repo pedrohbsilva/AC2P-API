@@ -10,6 +10,7 @@ Utilizar o python3, criar uma virtualenv usando o comando virtualenv NOME_DA_PAS
 Para instalar as dependências, utilize pip3 install -r requirements.txt
 
 Para utilizar o migrate, use os comandos:
-- db migrate: Para criar a pasta com os migrations
-- db upgrade: Para criar dentro do seu database os migrations atualizados
+- python3 main.py db init: Para criar a pasta de migration
+- python3 main.py db migrate: Para enviar as tabelas para a pasta migration
+- python3 main.py db upgrade: Para criar dentro do seu database os migrations atualizados
 
