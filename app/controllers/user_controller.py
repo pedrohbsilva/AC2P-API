@@ -1,5 +1,7 @@
 from flask import jsonify, Blueprint, request
 from app.models.User import User, UserSchema, user_share_schema, users_share_schema
+from app.models.Passenger import Passenger, PassengerSchema, passenger_share_schema, passengers_share_schema
+from app.models.Driver import Driver, DriverSchema, driver_share_schema, drivers_share_schema
 from app import app, db
 from app.utils.authenticate import jwt_required
 import jwt
@@ -13,6 +15,7 @@ def register():
   email = request.json['email']
   phone = request.json['phone']
   password = request.json['password']
+  type_user = request.json['type_user']
   
   user = User(
     name,
@@ -25,11 +28,32 @@ def register():
   db.session.add(user)
   db.session.commit()
   
-  result = user_share_schema.dump(
+  resultUser = user_share_schema.dump(
     User.query.filter_by(email=email).first()
   )
+  
+  if type_user == 1:
+    passenger = Passenger(
+      resultUser['id'],
+    )
+    db.session.add(passenger)
+    db.session.commit()
+    
+  if type_user == 2:
+    car = request.json['car']   
+    car_plate = request.json['car_plate']
+    cnh = request.json['cnh']
+  
+    driver = Driver(
+      resultUser['id'],
+      car,
+      car_plate,
+      cnh
+    )
+    db.session.add(driver)
+    db.session.commit()
 
-  return jsonify(result)
+  return jsonify(resultUser)
   
 @USER.route('/login', methods=['POST'])
 def login():

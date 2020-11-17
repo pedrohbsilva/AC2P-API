@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.models.User import User
 
 class Evaluation(db.Model):
-  __tablename__ = 'Evaluations'
+  __tablename__ = 'evaluations'
   id = db.Column(db.Integer, autoincrement=True, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
   evaluation = db.Column(db.Integer, nullable=False)
