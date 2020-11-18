@@ -12,7 +12,7 @@ class Passenger(db.Model):
 
 class PassengerSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'user_id' )
+    fields = ('id', 'user_id')
     
 passenger_share_schema = PassengerSchema()
 passengers_share_schema = PassengerSchema(many=True)
