@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from app import app, db, manager, api
+from app import app, db, manager
 from app.controllers.user_controller import USER
 from app.models.Address import Address
 from app.models.Driver import Driver
