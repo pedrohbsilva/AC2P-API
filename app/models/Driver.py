@@ -13,7 +13,7 @@ class Driver(db.Model):
   def __init__(self, user_id, car, car_plate, cnh):
     self.user_id = user_id
     self.car = car
-    self.car_plate = car
+    self.car_plate = car_plate
     self.cnh = cnh
 
 class DriverSchema(ma.Schema):
