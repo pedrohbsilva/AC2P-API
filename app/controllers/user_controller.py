@@ -83,3 +83,24 @@ def index(current_user):
   )
   
   return jsonify(result)
+
+@USER.route('/alteration', methods=['PUT'])
+def alteration():
+  
+  id = request.json["id"]
+  user_info = dict()
+  driver_info = dict()
+  
+  for x in request.get_json():
+    if x == "id":
+      pass 
+    elif  x == "car" or x == "car_plate":
+      driver_info[x] = request.json[x]
+    else:
+      user_info[x] = request.json[x]
+
+  User.query.filter_by(id=id).update(user_info)
+  Driver.query.filter_by(user_id=id).update(driver_info)
+  db.session.commit()
+
+  return jsonify({"message": "Sucesso"})
